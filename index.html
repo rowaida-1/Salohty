@@ -3,42 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <title>Important Question ❤️</title>
+
   <style>
     body {
-      text-align: center;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
       font-family: Arial, sans-serif;
-      margin-top: 100px;
-      background-color: #ffe6e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      
+      /* Animated gradient background */
+      background: linear-gradient(270deg, #ff00cc, #3333ff, #00ffee);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
 
     h1 {
-      font-size: 30px;
+      font-size: 40px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.8);
     }
 
     .btn {
-      padding: 15px 25px;
-      font-size: 18px;
+      padding: 15px 30px;
+      font-size: 20px;
       margin: 20px;
       border: none;
-      border-radius: 10px;
+      border-radius: 15px;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     #yes {
-      background-color: #4CAF50;
-      color: white;
+      background: #00ffcc;
+      color: black;
+      box-shadow: 0 0 20px #00ffcc;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
     }
 
     #no {
-      background-color: #f44336;
+      background: #ff3366;
       color: white;
       position: absolute;
+      box-shadow: 0 0 20px #ff3366;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: pink;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      from {transform: translateY(100vh);}
+      to {transform: translateY(-10vh);}
     }
   </style>
 </head>
+
 <body>
 
-  <h1>Do you love Rory? ❤️</h1>
+  <h1>Do you love me? ❤️</h1>
 
   <button id="yes" class="btn" onclick="yesClicked()">Yes 😍</button>
   <button id="no" class="btn">No 😢</button>
@@ -56,11 +95,22 @@
 
     function yesClicked() {
       document.body.innerHTML = `
-        <h1 style="font-size: 50px; color: #ff0066; margin-top: 100px;">Love you Loly ❤️</h1>
-        <div style="font-size: 150px;">😍💖😘</div>
+        <h1 style="font-size:60px;">Love you Loly ❤️</h1>
+        <div style="font-size:150px;">😍💖😘</div>
       `;
-      document.body.style.backgroundColor = "#fff0f5";
     }
+
+    // Create floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 30) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
   </script>
 
 </body>
